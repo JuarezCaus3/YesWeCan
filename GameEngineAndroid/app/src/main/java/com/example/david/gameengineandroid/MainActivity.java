@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
     public void onClickBtnGeometry(View view) {
         if (view.getId() == R.id.btnGeometryActivity) {
             Intent i = new Intent(this, GeometryActivity.class);
-          // startActivityForResult(i, REQUEST_ACTIVITY);
+            startActivity(i);
         }
     }
 
