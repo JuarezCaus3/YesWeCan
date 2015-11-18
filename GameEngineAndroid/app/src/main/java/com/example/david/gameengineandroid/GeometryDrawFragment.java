@@ -4,20 +4,22 @@ import android.app.Activity;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.david.gameengineandroid.OpenGLES.MyGLRenderer;
 import com.example.david.gameengineandroid.OpenGLES.MyGLSurfaceView;
 
 
 public class GeometryDrawFragment extends Fragment {
 
-    int[] array = {};
+    int[] array = {1, 2, 3};
 
     private static int mCurrentPosition = -1;
-    private GLSurfaceView mGLView;
+    private MyGLSurfaceView mGLView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +40,11 @@ public class GeometryDrawFragment extends Fragment {
 
     }
 
-    private void updateGeometry(int position) {
+    public void updateGeometry(int position) {
+
+        mGLView = (MyGLSurfaceView) getActivity().findViewById(R.id.glSurfaceViewID);
+        mGLView.setRenderer(new MyGLRenderer(position));
+        mCurrentPosition = position;
 
     }
 

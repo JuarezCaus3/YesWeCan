@@ -2,12 +2,11 @@ package com.example.david.gameengineandroid;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ListFragment;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import android.widget.ListView;
  */
 public class GeometryListFragment extends ListFragment {
 
-    String[] imageItemsArray = {"Triangle", "Triangle Black", "Triangle White"};
+    String[] imageItemsArray = {"Triangle", "Square"};
 
     OnImageItemSelectedListener mCallback;
 
@@ -48,35 +47,19 @@ public class GeometryListFragment extends ListFragment {
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
-    @TargetApi(23)
-    @Override public void onAttach(Context context) {
-        //This method avoid to call super.onAttach(context) if I'm not using api 23 or more
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            super.onAttach(context);
-            onAttachToContext(context);
-        }
-    }
-
-    /*
-     * Deprecated on API 23
-     * Use onAttachToContext instead
-     */
     @SuppressWarnings("deprecation")
-    @Override public void onAttach(Activity activity) {
+    @Override
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            onAttachToContext(activity);
-        }
-    }
 
-    /*
-     * This method will be called from one of the two previous method
-     */
-    protected void onAttachToContext(Context context) {
+        // makes sure parent MainActivity implements
+        // the callback interface. If not, it throws an exception.
         try {
-            mCallback = (OnImageItemSelectedListener) context;
+            mCallback = (OnImageItemSelectedListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " The GeometryActivity activity must " + "implement OnImageItemSelectedListener");
+            throw new ClassCastException(activity.toString()
+                    + " The MainActivity activity must " +
+                    "implement OnImageItemSelectedListener");
         }
     }
 
