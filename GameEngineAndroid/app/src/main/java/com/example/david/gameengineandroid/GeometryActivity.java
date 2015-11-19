@@ -5,14 +5,18 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 import com.example.david.gameengineandroid.OpenGLES.MyGLSurfaceView;
+import com.example.david.gameengineandroid.Util.AssetUtil;
 
 public class GeometryActivity extends FragmentActivity implements GeometryListFragment.OnImageItemSelectedListener {
 
     private MyGLSurfaceView mGLView;
+    private static AssetUtil assetUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
        // mGLView = new MyGLSurfaceView(this);
         setContentView(R.layout.fragment_container);
@@ -45,5 +49,9 @@ public class GeometryActivity extends FragmentActivity implements GeometryListFr
         } else {
             drawFragment.updateGeometry(position);
         }
+    }
+
+    public static AssetUtil getAssetUtil() {
+        return assetUtil;
     }
 }

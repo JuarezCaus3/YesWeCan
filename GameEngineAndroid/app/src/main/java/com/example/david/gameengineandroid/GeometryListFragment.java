@@ -19,7 +19,7 @@ import android.widget.ListView;
  */
 public class GeometryListFragment extends ListFragment {
 
-    String[] imageItemsArray = {"Triangle", "Square"};
+    String[] imageItemsArray = {"Triangle", "Square", "Cube"};
 
     OnImageItemSelectedListener mCallback;
 
